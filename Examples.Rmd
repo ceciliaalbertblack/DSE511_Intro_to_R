@@ -1,0 +1,66 @@
+---
+title: "R Notebook for Intro to R Presentation"
+subtitle: "By Cooper and Cecilia on October 14th, 2025" 
+output: html_notebook
+---
+
+## Slide #: Name of Example
+
+Explanation of example
+
+```{r}
+plot(cars)
+```
+
+## Tidyverse Example Workflow
+
+### Steps:
+
+#### 1. Load necessary packages 
+
+```{r}
+library(tidyverse)
+library(palmerpenguins) #example dataset built in r
+```
+
+#### 2. Inspect data
+
+```{r}
+str(penguins) 
+```
+
+#### 3. Tidy data using pipe operator
+
+Using pipe operator to remove missing values
+
+```{r}
+penguins_long <- penguins %>%
+  drop_na() %>%   # Remove rows with missing values
+  pivot_longer(
+    cols = c(bill_length_mm, bill_depth_mm),
+    names_to = "measurement",
+    values_to = "value"
+  )
+penguins_long
+```
+
+#### 4. Filter data using dplyr
+
+```{r}
+penguins_filtered <- penguins_long %>%
+  filter(value > 40)
+```
+
+#### 5. Plot using ggplot2
+
+Plot bill length by penguin species
+
+```{r}
+ggplot(penguins_clean, aes(x = species, y = bill_length_mm, fill = species)) +
+  geom_boxplot() +
+  labs(
+    title = "Bill Length by Penguin Species",
+    x = "Species",
+    y = "Bill Length (mm)"
+  )
+```
