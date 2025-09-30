@@ -4,12 +4,30 @@ subtitle: "By Cooper and Cecilia on October 14th, 2025"
 output: html_notebook
 ---
 
-## Slide #: Name of Example
+## Slide 4: Reproducibility & Integration
 
-Explanation of example
+Show how basic R and R Markdown work by exploring the preloaded dataset mtcars
+
+### Steps:
+
+### 1. Open R Markdown
+
+### 2. View the dataset
 
 ```{r}
-plot(cars)
+mtcars
+```
+
+### 3. Get a summary of the dataset
+
+```{r}
+summary(mtcars)
+```
+
+### 4. Show a simple plot
+
+```{r}
+plot(mtcars$mpg, mtcars$hp)
 ```
 
 ## Tidyverse Example Workflow
