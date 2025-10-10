@@ -16,7 +16,7 @@ plot(cars)
 
 ### Steps:
 
-#### 1. Load necessary packages 
+#### 1. Load necessary packages
 
 ```{r}
 library(tidyverse)
