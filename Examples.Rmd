@@ -5,6 +5,7 @@ output: html_notebook
 ---
 
 ## Silde 3: Motivation & Context
+
 ## Slide 4: Reproducibility & Integration
 
 Show how basic R and R Markdown work by exploring the preloaded dataset mtcars
@@ -32,8 +33,11 @@ plot(mtcars$mpg, mtcars$hp)
 ```
 
 ## Silde 5-6: Reproducibility & Integration continued
+
 ## Silde 7: Who has used R before?
+
 ## Silde 8-10: R Basics
+
 ## Silde 11-13: Data Visualization
 
 Show how basic graphs can be made using R
@@ -68,7 +72,7 @@ library(ggplot2)
 ggplot(mtcars, aes(x = mpg, y = hp)) + geom_point()
 ```
 
-## Tidyverse Example Workflow
+## Slides 16-18: Tidyverse Example Workflow
 
 ### Steps:
 
@@ -83,6 +87,7 @@ library(palmerpenguins) #example dataset built in r
 
 ```{r}
 str(penguins) 
+head(penguins)
 ```
 
 #### 3. Tidy data using pipe operator
@@ -90,21 +95,21 @@ str(penguins)
 Using pipe operator to remove missing values
 
 ```{r}
-penguins_long <- penguins %>%
-  drop_na() %>%   # Remove rows with missing values
-  pivot_longer(
-    cols = c(bill_length_mm, bill_depth_mm),
-    names_to = "measurement",
-    values_to = "value"
-  )
-penguins_long
+
+penguins_clean <- penguins %>%
+  mutate(
+    bill_ratio = bill_length_mm / bill_depth_mm  # create a new variable
+  ) %>%
+  drop_na(bill_length_mm, bill_depth_mm, bill_ratio)  # removes rows with NAs
+
+penguins_clean
 ```
 
 #### 4. Filter data using dplyr
 
 ```{r}
-penguins_filtered <- penguins_long %>%
-  filter(value > 40)
+penguins_filtered <- penguins_clean %>%
+  filter(bill_length_mm > 30)
 ```
 
 #### 5. Plot using ggplot2
@@ -112,11 +117,48 @@ penguins_filtered <- penguins_long %>%
 Plot bill length by penguin species
 
 ```{r}
-ggplot(penguins_clean, aes(x = species, y = bill_length_mm, fill = species)) +
+ggplot(penguins_filtered, aes(x = species, y = bill_length_mm, fill = species)) +
   geom_boxplot() +
   labs(
     title = "Bill Length by Penguin Species",
     x = "Species",
     y = "Bill Length (mm)"
   )
+```
+
+## Slides 19-21: Statistics and Modeling
+
+In the following code will demonstrate some statistical and modeling capabilities in R
+
+### Generating Data of a Given Distribution
+
+1.  Generate random (r-) Normally-distributed data (-norm)
+
+```{r}
+set.seed(123)  # for reproducibility
+
+x <- rnorm(1000, mean = 0, sd = 1)
+```
+
+2.  Overlay the theoretical density (d-) curve to the Normal distribution (-norm)
+
+```{r}
+# Histogram of data
+hist(x, breaks = 30, probability = TRUE,
+     main = "Normal Distribution", col = "lightblue")
+
+# Density function overlay
+curve(dnorm(x, mean = 0, sd = 1), add = TRUE, col = "red", lwd = 2)
+```
+
+3.  Determine the probability that X ≤ 1.96 (pnorm = inverse of qnorm)
+
+```{r}
+pnorm(1.96, mean = 0, sd = 1)
+```
+
+4.  Find the 97.5% quantile (qnorm = inverse of pnorm)
+
+```{r}
+qnorm(0.975, mean = 0, sd = 1)
 ```
