@@ -4,12 +4,68 @@ subtitle: "By Cooper and Cecilia on October 14th, 2025"
 output: html_notebook
 ---
 
-## Slide #: Name of Example
+## Silde 3: Motivation & Context
+## Slide 4: Reproducibility & Integration
 
-Explanation of example
+Show how basic R and R Markdown work by exploring the preloaded dataset mtcars
+
+### Steps:
+
+### 1. Open R Markdown
+
+### 2. View the dataset
 
 ```{r}
-plot(cars)
+mtcars
+```
+
+### 3. Get a summary of the dataset
+
+```{r}
+summary(mtcars)
+```
+
+### 4. Show a simple plot
+
+```{r}
+plot(mtcars$mpg, mtcars$hp)
+```
+
+## Silde 5-6: Reproducibility & Integration continued
+## Silde 7: Who has used R before?
+## Silde 8-10: R Basics
+## Silde 11-13: Data Visualization
+
+Show how basic graphs can be made using R
+
+### Steps:
+
+### 1. Create a Scatter Plot
+
+```{r}
+plot(mtcars$mpg, mtcars$hp,
+    main = "MPG vs Horsepower",
+    xlab = "Miles per Gallon",
+    ylab = "Horsepower",
+    col = "blue",
+    pch = 19)
+```
+
+### 2. Create a Histogram
+
+```{r}
+hist(mtcars$mpg,
+    main = "Distribution of MPG",
+    xlab = "Miles per Gallon",
+    col = "lightgreen",
+    border = "black")
+```
+
+### 3. Use ggplot2
+
+```{r}
+library(ggplot2)
+ggplot(mtcars, aes(x = mpg, y = hp)) + geom_point()
 ```
 
 ## Tidyverse Example Workflow
