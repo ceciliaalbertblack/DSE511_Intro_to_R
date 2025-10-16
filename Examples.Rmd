@@ -1,5 +1,5 @@
 ---
-title: "R Notebook for Intro to R Presentation"
+title: "DSE 511: R Notebook for Intro to R Presentation"
 subtitle: "By Cooper and Cecilia on October 14th, 2025" 
 output: html_notebook
 ---
@@ -8,7 +8,7 @@ output: html_notebook
 
 ## Slide 4: Reproducibility & Integration
 
-Show how basic R and R Markdown work by exploring the preloaded dataset mtcars
+Show how basic R and R Markdown work by exploring the pre-loaded dataset mtcars
 
 ### Steps:
 
@@ -20,25 +20,19 @@ Show how basic R and R Markdown work by exploring the preloaded dataset mtcars
 mtcars
 ```
 
-### 3. Get a summary of the dataset
+### 3. Using the helper function
+
+```{r}
+?summary
+```
+
+### 4. Get a summary of the dataset
 
 ```{r}
 summary(mtcars)
 ```
 
-### 4. Show a simple plot
-
-```{r}
-plot(mtcars$mpg, mtcars$hp)
-```
-
-## Silde 5-6: Reproducibility & Integration continued
-
-## Silde 7: Who has used R before?
-
-## Silde 8-10: R Basics
-
-## Silde 11-13: Data Visualization
+## Slide 11-13: Data Visualization
 
 Show how basic graphs can be made using R
 
@@ -104,7 +98,7 @@ ggplot(mtcars, aes(x = mpg, y = hp)) +
 
 ```{r}
 library(tidyverse)
-library(palmerpenguins) #example dataset built in r
+#palmerpenguins - example dataset built in r
 ```
 
 #### 2. Inspect data
@@ -122,9 +116,9 @@ Using pipe operator to remove missing values
 
 penguins_clean <- penguins %>%
   mutate(
-    bill_ratio = bill_length_mm / bill_depth_mm  # create a new variable
+    bill_ratio = bill_len / bill_dep  # create a new variable
   ) %>%
-  drop_na(bill_length_mm, bill_depth_mm, bill_ratio)  # removes rows with NAs
+  drop_na(bill_len, bill_dep, bill_ratio)  # removes rows with NAs
 
 penguins_clean
 ```
@@ -150,7 +144,7 @@ ggplot(penguins_filtered, aes(x = species, y = bill_length_mm, fill = species)) 
   )
 ```
 
-## Slides 19-21: Statistics and Modeling
+## Slides 19-21: Statistics
 
 In the following code will demonstrate some statistical and modeling capabilities in R
 
